@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción de Diabetes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center">
+                    <h2>Diagnóstico Predictivo de Diabetes</h2>
+                    <p class="mb-0">Ingresa los datos del paciente (Basado en Pima Indians Dataset)</p>
+                </div>
+                
+                <div class="card-body">
+                    <form action="/predict" method="POST">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Número de Embarazos (Pregnancies):</label>
+                                <input type="number" step="1" class="form-control" name="Pregnancies" required value="0">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Glucosa (Glucose):</label>
+                                <input type="number" step="any" class="form-control" name="Glucose" required value="120">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Presión Arterial (BloodPressure):</label>
+                                <input type="number" step="any" class="form-control" name="BloodPressure" required value="70">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Grosor de Piel (SkinThickness):</label>
+                                <input type="number" step="any" class="form-control" name="SkinThickness" required value="20">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Insulina (Insulin):</label>
+                                <input type="number" step="any" class="form-control" name="Insulin" required value="79">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Índice de Masa Corporal (BMI):</label>
+                                <input type="number" step="any" class="form-control" name="BMI" required value="25.5">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Función de Pedigrí (DiabetesPedigreeFunction):</label>
+                                <input type="number" step="any" class="form-control" name="DiabetesPedigreeFunction" required value="0.5">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Edad (Age):</label>
+                                <input type="number" step="1" class="form-control" name="Age" required value="30">
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-primary btn-lg w-50">Generar Predicción</button>
+                        </div>
+                    </form>
+                </div>
+                
+                {% if resultado_prediccion %}
+                <div class="card-footer text-center mt-2 p-4">
+                    <h3 style="color: {{ color_alerta }}; font-weight: bold;">
+                        {{ resultado_prediccion }}
+                    </h3>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
